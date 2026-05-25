@@ -14,7 +14,6 @@
     const k = name.match(/(\d+)\s*K\s*puffs/i);
     if (k) return k[1] + "K";
     if (/ultra slim/i.test(name)) return "ULTRA SLIM";
-    if (/pod system/i.test(name)) return "POD";
     if (/refil/i.test(name)) return "REFIL";
     const n = name.match(/(\d{3,5})\s*puffs/i);
     if (n) return n[1];
@@ -22,7 +21,7 @@
   }
 
   async function boot() {
-    const podGrid = document.getElementById("pods-grid");
+    const podGrid = document.getElementById("disp-grid");
     const perfGrid = document.getElementById("perfumes-grid");
     if (podGrid) podGrid.innerHTML = `<div class="grid-loading">Carregando catálogo…</div>`;
     try {
@@ -41,7 +40,7 @@
 
   /* ---------------- PODS ---------------- */
   function buildBrandFilter() {
-    const bar = document.getElementById("pods-filter");
+    const bar = document.getElementById("disp-filter");
     if (!bar) return;
     const brands = ["TODAS", ...[...new Set(PODS.map((p) => p.brand))]];
     bar.innerHTML = brands.map((b) =>
@@ -65,11 +64,11 @@
   }
 
   function renderPods() {
-    const grid = document.getElementById("pods-grid");
+    const grid = document.getElementById("disp-grid");
     if (!grid) return;
     const list = PODS.filter(podMatches);
     if (list.length === 0) {
-      grid.innerHTML = `<div class="grid-empty">Nenhum pod encontrado${term ? ` para "<b>${esc(term)}</b>"` : ""}.</div>`;
+      grid.innerHTML = `<div class="grid-empty">Nenhum produto encontrado${term ? ` para "<b>${esc(term)}</b>"` : ""}.</div>`;
       return;
     }
     grid.innerHTML = list.map((p) => {

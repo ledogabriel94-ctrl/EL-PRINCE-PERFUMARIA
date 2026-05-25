@@ -85,7 +85,7 @@
     const off = PRODUCTS.filter((p) => p.active === false);
     $("stats").innerHTML = `
       <div class="stat"><div class="n">${PRODUCTS.length}</div><div class="l">Produtos</div></div>
-      <div class="stat"><div class="n">${pods.length}</div><div class="l">Pods</div></div>
+      <div class="stat"><div class="n">${pods.length}</div><div class="l">Descartáveis</div></div>
       <div class="stat"><div class="n">${perf.length}</div><div class="l">Perfumes</div></div>
       <div class="stat"><div class="n">${off.length}</div><div class="l">Inativos</div></div>`;
   }
@@ -104,7 +104,7 @@
     rows.innerHTML = list.map((p) => `
       <tr>
         <td>${p.image_url ? `<img class="t-img" src="${esc(p.image_url)}" alt="">` : `<div class="t-img ph">❖</div>`}</td>
-        <td><span class="tag-cat ${p.category}">${p.category === "pods" ? "Pod" : "Perfume"}</span></td>
+        <td><span class="tag-cat ${p.category}">${p.category === "pods" ? "Descartável" : "Perfume"}</span></td>
         <td>${esc(p.brand)}</td>
         <td>${esc(p.name)}</td>
         <td>${brl(p.price_atacado)}</td>

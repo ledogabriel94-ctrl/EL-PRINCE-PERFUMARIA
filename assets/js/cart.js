@@ -8,7 +8,7 @@
 (function () {
   const LS = "elprince_cart_v1";
   const INFO = window.EL_PRINCE_INFO || {};
-  const CAT_LABEL = { pods: "PODS / DESCARTÁVEIS", perfume: "PERFUMES ÁRABES" };
+  const CAT_LABEL = { pods: "DESCARTÁVEIS", perfume: "PERFUMES ÁRABES" };
   const CAT_UNIT = { pods: "peças", perfume: "perfumes" };
 
   let items = load();
@@ -72,7 +72,7 @@
       if (!box) return;
 
       if (items.length === 0) {
-        box.innerHTML = `<div class="cart-empty"><span class="ce-icon">☾</span>Seu carrinho está vazio.<br>Adicione pods ou perfumes para começar.</div>`;
+        box.innerHTML = `<div class="cart-empty"><span class="ce-icon">☾</span>Seu carrinho está vazio.<br>Adicione perfumes ou descartáveis para começar.</div>`;
         if (foot) foot.style.display = "none";
         return;
       }

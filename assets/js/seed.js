@@ -46,7 +46,7 @@ window.EL_PRINCE_SEED = [
     price_atacado:27, price_varejo:37, atacado_min:10, active:true, sort:10,
     flavors:["Orange Soda Ice","Cherry Lemonade","Blueberry Raspberry","Ice Mint","Cola Ice","Green Apple","Cool Menthol","Açaí Grape"] },
 
-  { id:"pod-11", category:"pods", brand:"IGNITE", name:"Ignite P100 Pod System",
+  { id:"pod-11", category:"pods", brand:"IGNITE", name:"Ignite P100",
     price_atacado:65, price_varejo:75, atacado_min:10, active:true, sort:11,
     flavors:["Grape Ice","Ice Mint","Watermelon Ice","Green Apple","Strawberry Ice","Menthol"] },
 

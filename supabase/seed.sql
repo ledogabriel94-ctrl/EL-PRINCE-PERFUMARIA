@@ -15,7 +15,7 @@ insert into public.products (id, category, brand, name, price_atacado, price_var
 ('pod-08','pods','IGNITE','Ignite V80K Puffs New Edition',60,70,10,8, ARRAY['Tobacco','Strawberry Ice','Strawberry Kiwi']),
 ('pod-09','pods','IGNITE','Ignite V3500 Puffs',30,40,10,9, ARRAY['Strawberry Apple Watermelon','Cherry Ice','Blue Raspberry Ice','Grape Ice','Menthol','Fruit Splash','Ice Mint','Green Apple Peach Kiwi']),
 ('pod-10','pods','IGNITE','Ignite V Nano 1000 Puffs',27,37,10,10, ARRAY['Orange Soda Ice','Cherry Lemonade','Blueberry Raspberry','Ice Mint','Cola Ice','Green Apple','Cool Menthol','Açaí Grape']),
-('pod-11','pods','IGNITE','Ignite P100 Pod System',65,75,10,11, ARRAY['Grape Ice','Ice Mint','Watermelon Ice','Green Apple','Strawberry Ice','Menthol']),
+('pod-11','pods','IGNITE','Ignite P100',65,75,10,11, ARRAY['Grape Ice','Ice Mint','Watermelon Ice','Green Apple','Strawberry Ice','Menthol']),
 ('pod-12','pods','IGNITE','Ignite P100 Refil',45,55,10,12, ARRAY['Blueberry Ice','Strawberry Kiwi','Green Apple','Banana Ice']),
 -- ===== PODS — ELF BAR =====
 ('pod-13','pods','ELF BAR','Elf Bar BC 10K Puffs Special Edition',53,63,10,13, ARRAY['Admiration Blue','Honeydew Duo Ice']),

@@ -36,8 +36,9 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
   // Câmera afastada → coroa menor e centralizada ao fundo
+  const camZ = () => W < 640 ? 22 : W < 900 ? 16 : 11.5;
   const camera = new THREE.PerspectiveCamera(35, W / H, 0.1, 100);
-  camera.position.set(0, 0.5, 11.5);
+  camera.position.set(0, 0.5, camZ());
   camera.lookAt(0, 0.3, 0);
 
   // Luzes mais suaves (fundo discreto)
@@ -102,7 +103,9 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 
   function resize() {
     W = host.clientWidth; H = host.clientHeight || window.innerHeight;
-    camera.aspect = W / H; camera.updateProjectionMatrix(); renderer.setSize(W, H, false);
+    camera.aspect = W / H; camera.updateProjectionMatrix();
+    camera.position.z = camZ();
+    renderer.setSize(W, H, false);
   }
   window.addEventListener("resize", resize);
 

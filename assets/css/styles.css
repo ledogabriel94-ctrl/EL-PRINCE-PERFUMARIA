@@ -449,6 +449,7 @@ footer { position: relative; z-index: 1; background: var(--rich); border-top: 1p
   .hero-title { font-size: 2rem; }
   .modal-row { grid-template-columns: 1fr; }
   .cart-drawer { width: 100%; }
+  .hero-canvas { opacity: 0.22; }
 }
 @media (max-width: 420px) {
   .products-grid { grid-template-columns: 1fr; }

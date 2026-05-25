@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Admin — El Prince Company 👑</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Amiri:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="admin-body">
+
+<!-- ═══ LOGIN ═══ -->
+<section class="admin-login" id="login-view">
+  <form class="admin-card" id="login-form">
+    <div class="crown">👑</div>
+    <h1>EL PRINCE — ADMIN</h1>
+    <div class="sub">Acesso restrito ao administrador</div>
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" id="login-email" placeholder="seu@email.com" autocomplete="username" required>
+    </div>
+    <div class="field">
+      <label>Senha</label>
+      <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" required>
+    </div>
+    <button class="btn-admin" type="submit">Entrar</button>
+    <div class="login-err" id="login-err"></div>
+    <div class="mode-pill" id="mode-pill"></div>
+  </form>
+</section>
+
+<!-- ═══ DASHBOARD ═══ -->
+<div id="dash-view" style="display:none">
+  <div class="admin-top">
+    <div class="brand"><span class="c">👑</span> EL PRINCE — Painel</div>
+    <div class="admin-actions">
+      <a class="btn-sm" href="index.html" target="_blank">Ver loja ↗</a>
+      <button class="btn-sm" id="btn-reset" title="Restaura a lista original (apenas modo local)">Restaurar lista</button>
+      <button class="btn-sm gold" id="btn-new">＋ Novo produto</button>
+      <button class="btn-sm danger" id="btn-logout">Sair</button>
+    </div>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="admin-stats" id="stats"></div>
+
+    <div class="admin-toolbar">
+      <input type="search" id="admin-search" placeholder="🔎 Buscar por nome, marca ou sabor…">
+      <select id="admin-cat">
+        <option value="">Todas as categorias</option>
+        <option value="pods">Pods / Descartáveis</option>
+        <option value="perfume">Perfumes</option>
+      </select>
+    </div>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Foto</th><th>Categoria</th><th>Marca</th><th>Produto</th>
+          <th>Atacado</th><th>Varejo</th><th>Sabores</th><th>Status</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="admin-rows"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ MODAL PRODUTO ═══ -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">Novo produto</h3>
+      <button class="cart-close" id="modal-close">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="f-id">
+      <div class="modal-row">
+        <div class="field">
+          <label>Categoria</label>
+          <select id="f-category">
+            <option value="pods">Pods / Descartáveis</option>
+            <option value="perfume">Perfume</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Marca</label>
+          <input id="f-brand" placeholder="Ex: IGNITE, LATTAFA…">
+        </div>
+      </div>
+      <div class="field">
+        <label>Nome do produto</label>
+        <input id="f-name" placeholder="Ex: Ignite V155 Puffs Ultra Slim">
+      </div>
+      <div class="modal-row">
+        <div class="field">
+          <label>Preço atacado (R$)</label>
+          <input id="f-atacado" type="number" min="0" step="1" placeholder="65">
+        </div>
+        <div class="field">
+          <label>Preço varejo (R$)</label>
+          <input id="f-varejo" type="number" min="0" step="1" placeholder="75">
+        </div>
+      </div>
+      <div class="modal-row">
+        <div class="field">
+          <label>Mínimo p/ atacado</label>
+          <input id="f-min" type="number" min="1" step="1" placeholder="10">
+          <div class="hint">Pods costumam ser 10 · Perfumes 3</div>
+        </div>
+        <div class="field">
+          <label>Ordem (sort)</label>
+          <input id="f-sort" type="number" step="1" placeholder="10">
+        </div>
+      </div>
+      <div class="field" id="flavors-field">
+        <label>Sabores (um por linha)</label>
+        <textarea id="f-flavors" placeholder="Banana Ice&#10;Grape Ice&#10;Menthol"></textarea>
+        <div class="hint">Deixe vazio para perfumes.</div>
+      </div>
+      <div class="field">
+        <label>Foto do produto</label>
+        <input id="f-image-file" type="file" accept="image/*">
+        <input id="f-image-url" placeholder="ou cole uma URL de imagem" style="margin-top:8px">
+        <img class="img-preview" id="f-image-preview" alt="" style="display:none">
+        <div class="hint" id="upload-hint"></div>
+      </div>
+      <div class="field">
+        <label><input type="checkbox" id="f-active" checked style="width:auto;margin-right:8px">Produto ativo (visível na loja)</label>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-sm" id="modal-cancel">Cancelar</button>
+      <button class="btn-sm gold" id="modal-save">Salvar produto</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/seed.js"></script>
+<script src="assets/js/data-layer.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

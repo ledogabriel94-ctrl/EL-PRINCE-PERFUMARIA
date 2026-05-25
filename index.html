@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Prince Company 👑 — Perfumes Árabes & Pods</title>
+<meta name="description" content="El Prince Company — Perfumes árabes originais e pods/descartáveis. Atacado e varejo. Enviamos para todo o Brasil. Pedidos pelo WhatsApp. +18.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- Three.js (coroa 3D) -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<!-- Supabase JS (usado na Fase B; inofensivo na Fase A) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- ════════ AGE GATE (+18) ════════ -->
+<div class="agegate" id="agegate">
+  <div class="agegate-box">
+    <div class="agegate-crown">٨١+</div>
+    <h2>Conteúdo para maiores de 18 anos</h2>
+    <p>Este site comercializa produtos com nicotina e perfumaria, destinados exclusivamente a maiores de 18 anos. Você confirma ser maior de idade?</p>
+    <div class="agegate-actions">
+      <button class="btn-gold" id="age-yes">Sou maior de 18</button>
+      <a class="btn-outline" id="age-no" href="#">Sair</a>
+    </div>
+    <p class="agegate-deny">Venda proibida para menores. Beba/use com responsabilidade.</p>
+  </div>
+</div>
+
+<!-- ════════ TOP BANNER ════════ -->
+<div class="top-banner">
+  <div class="banner-scroll">
+    <span>👑 ENVIAMOS PARA TODO O BRASIL</span><span>•</span>
+    <span>TEMOS OS MELHORES PRODUTOS, COM OS MENORES PREÇOS</span><span>•</span>
+    <span>ATACADO &amp; VAREJO</span><span>•</span>
+    <span>PEDIDOS PELO WHATSAPP</span><span>•</span>
+    <span>VENDAS SOMENTE PARA +18</span><span>•</span>
+    <span>👑 ENVIAMOS PARA TODO O BRASIL</span><span>•</span>
+    <span>TEMOS OS MELHORES PRODUTOS, COM OS MENORES PREÇOS</span><span>•</span>
+  </div>
+</div>
+
+<!-- ════════ NAV ════════ -->
+<nav id="inicio">
+  <a class="nav-logo" href="#inicio">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><defs>
+      <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#F5E27A"/><stop offset="1" stop-color="#A0822A"/>
+      </linearGradient></defs>
+      <path fill="url(#cg)" d="M6 44 L11 21 L22 33 L32 12 L42 33 L53 21 L58 44 Z"/>
+      <rect x="6" y="44" width="52" height="8" rx="1.5" fill="url(#cg)"/>
+      <circle cx="32" cy="12" r="3" fill="#8B0000"/>
+      <circle cx="11" cy="21" r="2.4" fill="#fff5e0"/>
+      <circle cx="53" cy="21" r="2.4" fill="#fff5e0"/>
+    </svg>
+    <span class="nav-logo-text">El Prince<small>COMPANY</small></span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#inicio">Início</a></li>
+    <li><a href="#pods">Pods</a></li>
+    <li><a href="#perfumes">Perfumes</a></li>
+    <li><a href="#avisos">Avisos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" data-open-cart aria-label="Abrir carrinho">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.2 12.2a1.5 1.5 0 0 0 1.5 1.3h8.6a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg>
+      <span>Carrinho</span>
+      <span class="cart-count empty" id="cart-count">0</span>
+    </button>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <canvas class="hero-canvas" id="hero-canvas"></canvas>
+  <div class="hero-arabic-bg">الأمير</div>
+  <div class="hero-inner">
+    <div class="hero-arabic">العُطورُ الشَّرقيّةُ الأصيلة</div>
+    <div class="ornament-line"></div>
+    <h1 class="hero-title">EL PRINCE</h1>
+    <div class="hero-subtitle">Company</div>
+    <div class="hero-phrase">"Temos os melhores produtos, com os menores preços."</div>
+    <div class="hero-btns">
+      <a class="btn-gold" href="#perfumes">Ver Perfumes</a>
+      <a class="btn-outline" href="#pods">Ver Pods</a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════ AVISOS ════════ -->
+<section class="avisos" id="avisos">
+  <div class="avisos-title">🚨 POR FAVOR, LEIA OS AVISOS 🚨</div>
+  <ul>
+    <li>Correios são enviados em <b>um dia útil após o pagamento</b>. Enviamos o código de rastreio. <b>Não nos responsabilizamos por extravio ou retenção.</b></li>
+    <li>Separamos a mercadoria <b>mediante o pagamento</b>.</li>
+    <li>Pedidos online para <b>retirada em loja</b> têm horários específicos, avisados no ato da compra.</li>
+    <li>Não nos responsabilizamos por possíveis perdas de mercadoria.</li>
+    <li>Atendimento online: <b>Segunda a Sexta até 17h</b> • <b>Sábado até 14h</b>.</li>
+    <li><b>Vendas somente para maiores de 18 anos.</b></li>
+  </ul>
+  <div class="aviso-destaque">🚨 NÃO OFERECEMOS GARANTIA EM NENHUM PRODUTO DA LISTA 🚨</div>
+  <div class="atacado-box" style="margin-top:18px">
+    <p><strong>ATACADO:</strong> mínimo <strong>10 peças</strong> em pods e <strong>3 peças</strong> em perfumes.
+    <br><strong>VAREJO:</strong> +R$10,00 sobre o valor de atacado nos pods. O preço de atacado é aplicado <strong>automaticamente</strong> no carrinho ao atingir o mínimo.</p>
+  </div>
+</section>
+
+<!-- ════════ PODS ════════ -->
+<section class="section" id="pods">
+  <div class="section-header">
+    <span class="section-arabic">السحابة</span>
+    <h2 class="section-title">Pods &amp; Descartáveis</h2>
+    <div class="section-line"></div>
+    <p class="section-sub">Lista atualizada diariamente · Atacado &amp; Varejo</p>
+  </div>
+  <div class="shop-tools">
+    <input type="search" class="flavor-search" id="flavor-search" placeholder="🔎 Buscar por sabor (ex: menthol, grape, watermelon...)">
+    <div class="filter-bar" id="pods-filter"></div>
+  </div>
+  <div class="products-grid" id="pods-grid"></div>
+</section>
+
+<!-- ════════ PERFUMES ════════ -->
+<section class="perfume-section" id="perfumes">
+  <div class="section-header">
+    <span class="section-arabic">عُطور</span>
+    <h2 class="section-title">Perfumes Árabes Originais</h2>
+    <div class="section-line"></div>
+    <p class="section-sub">100% Originais · Atacado mín. 3 peças</p>
+  </div>
+  <div class="perfume-grid" id="perfumes-grid"></div>
+</section>
+
+<!-- ════════ INSTA / THREADS ════════ -->
+<div class="insta-band">
+  <p>Acompanhe novidades, lançamentos e sabores em tempo real:</p>
+  <div class="insta-links">
+    <a href="https://www.instagram.com/elprinceco" target="_blank" rel="noopener">📸 @elprinceco — Instagram</a>
+    <a href="https://www.threads.net/@elprinceco" target="_blank" rel="noopener">＠ elprinceco — Threads</a>
+  </div>
+  <div class="horario-box">
+    <div class="horario-item"><strong>Atendimento Online</strong>Seg–Sex até 17h · Sáb até 14h</div>
+    <div class="horario-item"><strong>Loja Física</strong>Seg–Sex · 08:00 — 17:00</div>
+  </div>
+</div>
+
+<!-- ════════ FOOTER ════════ -->
+<footer id="contato">
+  <span class="footer-arabic">الأمير</span>
+  <div class="footer-logo">EL PRINCE COMPANY 👑</div>
+  <div class="footer-sub">
+    R. Barão de Duprat, 323 — Centro Histórico, São Paulo - SP, 01023-001<br>
+    WhatsApp: (11) 98193-1779 · abdodiabb90@gmail.com<br>
+    Enviamos para todo o Brasil · Vendas somente para +18
+  </div>
+  <div class="footer-links">
+    <a href="https://wa.me/5511981931779" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.instagram.com/elprinceco" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.threads.net/@elprinceco" target="_blank" rel="noopener">Threads</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=R.+Bar%C3%A3o+de+Duprat,+323,+S%C3%A3o+Paulo" target="_blank" rel="noopener">Como chegar</a>
+  </div>
+  <div class="footer-copy">© <span id="year"></span> El Prince Company. Todos os direitos reservados.</div>
+  <a class="footer-admin" href="admin.html">painel administrativo</a>
+</footer>
+
+<!-- ════════ WHATSAPP FLOAT ════════ -->
+<a class="wpp-float" href="https://wa.me/5511981931779" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  Pedir no WhatsApp
+</a>
+
+<!-- ════════ CART DRAWER ════════ -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" aria-label="Carrinho de compras">
+  <div class="cart-head">
+    <h3>🛒 Seu Carrinho</h3>
+    <button class="cart-close" aria-label="Fechar">×</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-foot" id="cart-foot">
+    <div class="cart-total-row"><span class="lbl">TOTAL</span><span class="val" id="cart-total">R$ 0,00</span></div>
+    <button class="btn-checkout" id="btn-checkout">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg>
+      Finalizar no WhatsApp
+    </button>
+    <button class="cart-clear" id="cart-clear">esvaziar carrinho</button>
+  </div>
+</aside>
+
+<!-- ════════ SCRIPTS ════════ -->
+<script src="assets/js/config.js"></script>
+<script src="assets/js/seed.js"></script>
+<script src="assets/js/data-layer.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/agegate.js"></script>
+<script type="module" src="assets/js/crown3d.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+  // menu mobile
+  const burger = document.getElementById("nav-burger");
+  const links = document.getElementById("nav-links");
+  if (burger) burger.onclick = () => links.classList.toggle("open");
+  links.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => links.classList.remove("open")));
+</script>
+</body>
+</html>

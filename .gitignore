@@ -1,0 +1,11 @@
+# Sistema operacional / editores
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log
+
+# Dependências (não usadas, mas por segurança)
+node_modules/
+
+# Arquivos temporários de teste
+_test_*.py
